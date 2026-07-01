@@ -153,30 +153,12 @@
     Remove this step if not applicable
     -->
 
-    <!-- Single YouTube Video -->
-    <div class="video-section">
-      <h3>Demo Video</h3>
-      <div class="video-container">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/ysFav0b472w?si=Rxxp3R6_tkBXAEmP"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <p>
-        TODO: This is the short explanation paragraph of the video. Add your
-        paragraph here if required
-      </p>
-    </div>
-
     <div class="abstract" id="abstract">
       <h2>Abstract</h2>
-      <p>TODO: Add Abstract</p>
+      <video controls autoplay muted loop playsinline width="100%">
+      <source src="Assets/All_St3R_experiments" type="video/mp4">
+      </video>
+      <p>SLAM (Simultaneous Localization and Mapping) is a core technology in autonomous systems that enables them to estimate their own position and build a map of unknown environments simultaneously. SLAM systems in dynamic environments are of great practical importance. However, existing dynamic SLAM approaches still have several limitations like over-removal and high computational costs. To address these limitations, we propose a real-time RGB Dynamic SLAM framework that precisely removes moving objects at the pixel level without relying on predefined labels or segmentation models. Our system combines pixel motion predicted by ego-motion using DUSt3R with point tracking from All-Tracker, removing only actually moving pixels by analyzing discrepancies between the two motion sources. Unlike object-level masking methods, our approach eliminates only currently moving regions, allowing temporarily static parts to be utilized for tracking. Operating at approximately 10 FPS, the system achieves real-time performance on standard 30 FPS video streams by subsampling every 3 frames. Relying solely on RGB inputs, this significantly improves upon state-of-the-art dense dynamic SLAM approaches (0.5–3 FPS), presenting a highly practical solution. </p>
     </div>
 
     <!-- Step 3 End: Add your paper abstract -->
