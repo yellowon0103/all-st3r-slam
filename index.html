@@ -156,7 +156,7 @@
     <div class="abstract" id="abstract">
       <h2>Abstract</h2>
       <video controls autoplay muted loop playsinline width="100%">
-      <source src="Assets/All_St3R_experiments" type="video/mp4">
+      <source src="Assets/All_St3R_experiments.mp4" type="video/mp4">
       </video>
       <p>SLAM (Simultaneous Localization and Mapping) is a core technology in autonomous systems that enables them to estimate their own position and build a map of unknown environments simultaneously. SLAM systems in dynamic environments are of great practical importance. However, existing dynamic SLAM approaches still have several limitations like over-removal and high computational costs. To address these limitations, we propose a real-time RGB Dynamic SLAM framework that precisely removes moving objects at the pixel level without relying on predefined labels or segmentation models. Our system combines pixel motion predicted by ego-motion using DUSt3R with point tracking from All-Tracker, removing only actually moving pixels by analyzing discrepancies between the two motion sources. Unlike object-level masking methods, our approach eliminates only currently moving regions, allowing temporarily static parts to be utilized for tracking. Operating at approximately 10 FPS, the system achieves real-time performance on standard 30 FPS video streams by subsampling every 3 frames. Relying solely on RGB inputs, this significantly improves upon state-of-the-art dense dynamic SLAM approaches (0.5–3 FPS), presenting a highly practical solution. </p>
     </div>
@@ -170,10 +170,12 @@
     Remove this step if not applicable
     -->
 
+    <!-- 
     <div class="content-section" id="introduction">
       <h2>Introduction</h2>
       <p>TODO: Add Introduction</p>
     </div>
+    -->
 
     <!-- Step 4 End: Add your paper introduction -->
 
@@ -185,8 +187,17 @@
     -->
 
     <div class="content-section" id="methodology">
-      <h2>Methodology</h2>
-      <p>TODO: Add Methodology</p>
+      <h2>Method</h2>
+      <img
+        src="Assets/architecture_final.png"
+        alt="All-St3R SLAM Architecture"
+        class="method-image"
+      />
+
+      <p>Our proposed framework is a real-time monocular dense SLAM system designed for robust tracking and mapping in dynamic environments. We build upon MASt3R-SLAM as our baseline, but introduce a fundamental shift in how geometric correspondences are constructed and dynamic outliers are handled.
+We adopt DUSt3R~\cite as our core geometric backbone in place of MASt3R, benefiting from its faster inference and lower 
+memory footprint. To compensate for the absence of MASt3R's learned matching features, we integrate a lightweight pairwise adaptation of All-Tracker, which supplies dense image-level point tracking as a complementary correspondence source. 
+Crucially, this combination serves a dual purpose: beyond providing high-fidelity correspondences, it enables purely geometry-driven dynamic masking without the need for any segmentation or detection models.</p>
       <ul>
         <li>TODO</li>
         <li>TODO</li>
