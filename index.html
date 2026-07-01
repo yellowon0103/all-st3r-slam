@@ -81,6 +81,23 @@
     />
 
     <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+    </script>
+
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    
   </head>
   <body>
     <nav class="nav">
@@ -196,12 +213,45 @@
       />
 
       <p>Our proposed framework is a real-time monocular dense SLAM system designed for robust tracking and mapping in dynamic environments. We build upon MASt3R-SLAM as our baseline, but introduce a fundamental shift in how geometric correspondences are constructed and dynamic outliers are handled.
-We adopt DUSt3R~\cite as our core geometric backbone in place of MASt3R, benefiting from its faster inference and lower 
+We adopt DUSt3R as our core geometric backbone in place of MASt3R, benefiting from its faster inference and lower 
 memory footprint. To compensate for the absence of MASt3R's learned matching features, we integrate a lightweight pairwise adaptation of All-Tracker, which supplies dense image-level point tracking as a complementary correspondence source. 
-Crucially, this combination serves a dual purpose: beyond providing high-fidelity correspondences, it enables purely geometry-driven dynamic masking without the need for any segmentation or detection models.</p>
+Crucially, this combination serves a dual purpose: beyond providing high-fidelity correspondences, it enables purely geometry-driven dynamic masking without the need for any segmentation or detection models.
+      </p>
+      <p>
+      To clarify our pipeline, we define three core data terms:
+      </p>
+
       <ul>
-        <li>TODO</li>
-        <li>TODO</li>
+        <li>
+          <strong>Frame ($I_f$):</strong>
+          The current RGB input.
+        </li>
+
+        <li>
+          <strong>Keyframe ($I_k$):</strong>
+          A historically significant frame used as a reference for tracking
+          and backend graph optimization.
+        </li>
+
+        <li>
+          <strong>Canonical Keyframe Pointcloud ($\tilde{X}_k^k$):</strong>
+          A 3D pointmap representation of a keyframe defined in the global
+          coordinate frame. Each keyframe maintains its own independent
+          canonical pointcloud.
+        </li>
+      </ul>
+
+<p>
+The pipeline processes each incoming frame $I_f$ by pairing it with the
+current keyframe $I_k$. As illustrated in the figure above, the system
+proceeds through the following four sequential stages.
+</p>
+      
+      <ul>
+        <li>Dense Geometry and Tracking Extraction</li>
+        <li>Confidence Reweighting</li>
+        <li>Pixel-wise Dynamic Masking</li>
+        <li>Pose Tracking and Map Update</li>
       </ul>
     </div>
 
