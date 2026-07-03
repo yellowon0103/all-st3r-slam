@@ -223,7 +223,7 @@ Crucially, this combination serves a dual purpose: beyond providing high-fidelit
 
       <table style="width:90%; max-width:1000px; margin:20px auto; border:none;">
   <tr>
-    <td style="width:35%; text-align:center;">
+    <td style="width:35%; text-align:center; padding-right:15px;">
       <img
         src="Assets/ego_motion.png"
         alt="ego_motion"
@@ -231,7 +231,7 @@ Crucially, this combination serves a dual purpose: beyond providing high-fidelit
       />
     </td>
 
-    <td style="width:65%; text-align:center;">
+    <td style="width:65%; text-align:center; padding-left:15px;">
       <img
         src="Assets/accumulated_dynamic.png"
         alt="accumulated_dynamic"
@@ -240,6 +240,35 @@ Crucially, this combination serves a dual purpose: beyond providing high-fidelit
     </td>
   </tr>
 </table>
+      
+      <p>
+        Assuming the KeyFrame point cloud reconstructed by DUSt3R
+is static, projecting those 3D points into the Frame camera produces the pixel
+motion predicted by camera Ego-Motion. In contrast, All-Tracker predicts
+pixel correspondences directly between the KeyFrame and the Frame in the
+image domain, producing Point Tracking. When the KeyFrame point cloud
+contains dynamic objects, discrepancies arise between these two motions.
+Points with large discrepancies between the two motions are regarded as
+Dynamic Movement.
+        
+      </p>
+      <p>
+To handle dynamic objects robustly over time, we employ a frame-by-frame
+mask accumulation strategy, as illustrated in the right figure. For each
+Keyframe $I_k$, a cumulative dynamic mask $Dyn_k$ is maintained. Whenever
+a new Frame $I_f$ arrives, the newly detected dynamic mask $dyn_t$ is
+merged into the cumulative mask:
+</p>
+
+$$
+Dyn_k \leftarrow Dyn_k \cup dyn_t.
+$$
+
+<p>
+The accumulated mask is continuously propagated to subsequent keyframes,
+ensuring that previously observed dynamic regions remain excluded from
+tracking and mapping while preserving a clean global map.
+</p>
       
     </div>
 
