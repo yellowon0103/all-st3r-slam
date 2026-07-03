@@ -217,42 +217,26 @@ We adopt DUSt3R as our core geometric backbone in place of MASt3R, benefiting fr
 memory footprint. To compensate for the absence of MASt3R's learned matching features, we integrate a lightweight pairwise adaptation of All-Tracker, which supplies dense image-level point tracking as a complementary correspondence source. 
 Crucially, this combination serves a dual purpose: beyond providing high-fidelity correspondences, it enables purely geometry-driven dynamic masking without the need for any segmentation or detection models.
       </p>
-      <p>
-      To clarify our pipeline, we define three core data terms:
-      </p>
 
-      <ul>
-        <li>
-          <strong>Frame ($I_f$):</strong>
-          The current RGB input.
-        </li>
 
-        <li>
-          <strong>Keyframe ($I_k$):</strong>
-          A historically significant frame used as a reference for tracking
-          and backend graph optimization.
-        </li>
+      <h3>Pixel-wise Dynamic Masking</h3>
 
-        <li>
-          <strong>Canonical Keyframe Pointcloud ($\tilde{X}_k^k$):</strong>
-          A 3D pointmap representation of a keyframe defined in the global
-          coordinate frame. Each keyframe maintains its own independent
-          canonical pointcloud.
-        </li>
-      </ul>
+      <div style="width:90%; max-width:1000px; margin:20px auto; display:flex; gap:20px;">
 
-<p>
-The pipeline processes each incoming frame $I_f$ by pairing it with the
-current keyframe $I_k$. As illustrated in the figure above, the system
-proceeds through the following four sequential stages.
-</p>
+      <img
+      src="Assets/ego_motion.png"
+      alt="ego_motion"
+      style="width:50%; height:auto;"
+      />
+
+      <img
+      src="Assets/accumulated_dynamic.png"
+      alt="accumulated_dynamic"
+      style="width:50%; height:auto;"
+      />
+
+      </div>
       
-      <ul>
-        <li>Dense Geometry and Tracking Extraction</li>
-        <li>Confidence Reweighting</li>
-        <li>Pixel-wise Dynamic Masking</li>
-        <li>Pose Tracking and Map Update</li>
-      </ul>
     </div>
 
     <!-- Step 5 End: Add your paper methodology -->
