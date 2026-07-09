@@ -332,7 +332,38 @@ tracking and mapping while preserving a clean global map.
       </p>
       
       <h3>Dynamic Masking Analysis</h3>
-      <p>TODO: Add Results</p>
+<p>
+        Existing methods utilizing uncertainty maps derived from DINOv2 features often produce blurry results due to low-resolution feature extraction. In contrast, our approach generates sharp, full-resolution dynamic masks that effectively isolate moving objects, preventing them from corrupting the reconstructed map.
+      </p>
+
+      <img
+        src="Assets/fig9.png"
+        alt="Mask Quality Comparison"
+        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+      />
+      <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
+        <strong>Mask Quality Comparison.</strong> Left: Uncertainty map from WildGS-SLAM, which is blurry due to feature downsampling. Right: Our pixel-wise dynamic mask on the Bonn dataset, showing high-resolution sharpness and better boundary adherence.
+      </p>
+
+      <img
+        src="Assets/fig10.png"
+        alt="KeyFrame Dynamic Masks"
+        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+      />
+      <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
+        <strong>KeyFrame Dynamic Masks.</strong> Visualization of dynamic masks on keyframes from the <em>freiburg3 walking xyz</em> sequence. The system effectively identifies the moving person.
+      </p>
+
+      <img
+        src="Assets/Bonn_dynamic_visualize.png"
+        alt="Reconstruction on Bonn Dataset"
+        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+      />
+      <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
+        <strong>Reconstruction on Bonn Dataset.</strong> Left: Final reconstruction of person tracking. The moving person is completely removed, resulting in clean geometry. Right: Live tracking visualization showing the current frame (rainbow point cloud) aligned to the canonical map, with the dynamic person effectively masked out.
+      </p>
+      
+      
       <h3>Generalizable Dynamic Mask</h3>
       <img
         src="Assets/generalizable.png"
@@ -341,8 +372,8 @@ tracking and mapping while preserving a clean global map.
       />
 
       <p>
-        <strong>Generalization: Quadruped Robot.</strong> (Top: Clean reconstruction, Bottom: Dynamic mask)<br>
-        Our method successfully detects and removes the ANYmal robot without prior knowledge of the object class.</p>
+        (Top: Clean reconstruction, Bottom: Dynamic mask) 
+        Our method successfully detects and removes the Quadruped Robot without prior knowledge of the object class.</p>
       
       <h3>Ablation Study</h3>
       <img
