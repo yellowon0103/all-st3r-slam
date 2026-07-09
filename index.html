@@ -102,10 +102,10 @@
   <body>
     <nav class="nav">
       <a href="#abstract">Abstract</a>
-      <a href="#introduction">Introduction</a>
-      <a href="#methodology">Methodology</a>
+      <a href="#methodology">Method</a>
+      <a href="#results">Experiments</a>
       <a href="#results">Results</a>
-      <a href="#conclusion">Conclusion</a>
+      <a href="#acknowledgement">Acknowledgement</a>
       <button class="toggle-btn" onclick="toggleDarkMode()">
         Toggle Dark Mode
       </button>
@@ -153,12 +153,8 @@
     -->
 
     <div class="buttons">
-      <a href="#" target="_blank">Paper</a>
-      <a href="#" target="_blank">Videos</a>
-      <a href="#" target="_blank">Code</a>
-      <a href="#" target="_blank">Dataset</a>
-      <a href="#" target="_blank">Model</a>
-      <a href="#bibtex">BibTex</a>
+      <a href="https://drive.google.com/file/d/1nAlEuM95CJSnktXZ3p32tRAsq1tI-rPl/view?pli=1" target="_blank">Paper</a>
+      <!-- <a href="#bibtex">BibTex</a> -->
     </div>
 
     <!-- Step 2 End: Button for links -->
@@ -290,10 +286,6 @@ mask accumulation strategy, as illustrated in the right figure.
       </ul>
       -->
       <h3>Robust tracking stability</h3>
-      <p>
-        We evaluate the core claim of this work: frame-by-frame <strong>pixel-wise motion masking</strong> significantly improves tracking stability in highly dynamic scenes. Unlike object-level masking approaches that often discard valid correspondences and cause feature starvation, our method preserves temporarily static regions to maintain continuous pose estimation without tracking failures or relocalization.
-      </p>
-
       <table style="width:90%; max-width:1000px; margin:20px auto; border:none;">
         <tr>
           <td style="width:50%; text-align:center; padding-right:10px; vertical-align:top;">
@@ -303,7 +295,7 @@ mask accumulation strategy, as illustrated in the right figure.
               style="width:100%; height:auto; display:block;"
             />
             <p style="font-size: 0.9em; margin-top: 15px; text-align: left;">
-              <strong>Tracking Failure (Object-Level Masking).</strong> Severe feature starvation triggers multiple relocalizations and tracking instability.
+              <strong>Tracking Failure with Object-Level Masking.</strong> Severe feature starvation triggers multiple relocalizations and tracking instability.
             </p>
           </td>
 
@@ -382,7 +374,8 @@ mask accumulation strategy, as illustrated in the right figure.
       />
       <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
         <strong>Mask Quality Comparison.</strong> <br>
-        Left: Uncertainty map from WildGS-SLAM, which is blurry due to feature downsampling. Right: Our pixel-wise dynamic mask on the Bonn dataset, showing high-resolution sharpness and better boundary adherence.
+        Left: Uncertainty map from WildGS-SLAM, which is blurry due to feature downsampling. <br>
+        Right: Our pixel-wise dynamic mask on the Bonn dataset, showing high-resolution sharpness and better boundary adherence.
       </p>
 
       <img
@@ -402,7 +395,8 @@ mask accumulation strategy, as illustrated in the right figure.
       />
       <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
         <strong>Reconstruction on Bonn Dataset.</strong> <br>
-        Left: Final reconstruction of person tracking. The moving person is completely removed, resulting in clean geometry. Right: Live tracking visualization showing the current frame (rainbow point cloud) aligned to the canonical map, with the dynamic person effectively masked out.
+        Left: Final reconstruction of person tracking. The moving person is completely removed, resulting in clean geometry. <br>
+        Right: Live tracking visualization showing the current frame (rainbow point cloud) aligned to the canonical map, with the dynamic person effectively masked out.
       </p>
       
       
@@ -439,11 +433,6 @@ mask accumulation strategy, as illustrated in the right figure.
     Please do not remove below H2 heading tag. Add your HTML code after H2 HTML tag or add text inside P HTML tag. 
     Remove this step if not applicable
     -->
-
-    <div class="content-section" id="conclusion">
-      <h2>Acknowledgment</h2>
-      <p>This work was supported by Institute of Information & communications Technology Planning & Evaluation (IITP) grant funded by the Korea government(MSIT)(No.RS-2026- 25516746,  Development  of  On-Device  VLA-Based  Real- Time  Action  Intelligence  Technology  for  Task  Execution of Autonomous Agents) and the Korea Institute of Science and Technology (KIST) Institutional Program (Project No. 26E0061).</p>
-    </div>
 
     <!-- Step 7 End: Add your paper conclusion -->
 
@@ -484,14 +473,13 @@ mask accumulation strategy, as illustrated in the right figure.
 
     <div class="content-section" id="acknowledgement">
       <h2>Acknowledgement</h2>
-      <p>TODO: Add Acknowledgement if applicable or remove this</p>
+      <p>This work was supported by Institute of Information & communications Technology Planning & Evaluation (IITP) grant funded by the Korea government(MSIT)(No.RS-2026- 25516746,  Development  of  On-Device  VLA-Based  Real- Time  Action  Intelligence  Technology  for  Task  Execution of Autonomous Agents) and the Korea Institute of Science and Technology (KIST) Institutional Program (Project No. 26E0061).</p>
     </div>
 
     <!-- Step 9 End: Add your paper acknowledgement -->
 
     <div class="footer">
       <!-- Step 10 Start: Edit footer -->
-      <p>© 2024 [TODO: Add Name or University]. All rights reserved.</p>
       <!-- Step 10 End: Edit footer -->
       <!-- Please do not remove below code. -->
       <p>
@@ -503,7 +491,6 @@ mask accumulation strategy, as illustrated in the right figure.
       </p>
        <div>
           <!-- Please remove below code of page count or edit indragithubpagetemplate with your name. -->
-    <img src="https://profile-counter.glitch.me/indragithubpagetemplate/count.svg" alt="Profile Counter">
 </div>
 
     <!-- Do not edit below button -->
