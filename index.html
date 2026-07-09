@@ -254,21 +254,9 @@ Dynamic Movement.
       </p>
       <p>
 To handle dynamic objects robustly over time, we employ a frame-by-frame
-mask accumulation strategy, as illustrated in the right figure. For each
-Keyframe $I_k$, a cumulative dynamic mask $Dyn_k$ is maintained. Whenever
-a new Frame $I_f$ arrives, the newly detected dynamic mask $dyn_t$ is
-merged into the cumulative mask:
+mask accumulation strategy, as illustrated in the right figure.
 </p>
 
-$$
-Dyn_k \leftarrow Dyn_k \cup dyn_t.
-$$
-
-<p>
-The accumulated mask is continuously propagated to subsequent keyframes,
-ensuring that previously observed dynamic regions remain excluded from
-tracking and mapping while preserving a clean global map.
-</p>
       
     </div>
 
@@ -302,13 +290,75 @@ tracking and mapping while preserving a clean global map.
       </ul>
       -->
       <h3>Robust tracking stability</h3>
-      <p>TODO: Add Results</p>
+      <p>
+        We evaluate the core claim of this work: frame-by-frame <strong>pixel-wise motion masking</strong> significantly improves tracking stability in highly dynamic scenes. Unlike object-level masking approaches that often discard valid correspondences and cause feature starvation, our method preserves temporarily static regions to maintain continuous pose estimation without tracking failures or relocalization.
+      </p>
+
+      <img
+        src="Assets/fig4.png"
+        alt="Object-Level Masking (SAM2) Over-removal"
+        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+      />
+      <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
+        <strong>Object-Level Masking Over-removal.</strong> Visualization on the <em>crowd</em> sequence of the Bonn RGB-D Dataset using SAM2. Even when motion is limited to a specific part (e.g., moving arms), the entire human body is masked out, discarding valid static regions and reducing essential matching correspondences.
+      </p>
+
+      <table style="width:90%; max-width:1000px; margin:20px auto; border:none;">
+        <tr>
+          <td style="width:50%; text-align:center; padding-right:10px; vertical-align:top;">
+            <img
+              src="Assets/fig5.png"
+              alt="Tracking Failure with Object-Level Masking"
+              style="width:100%; height:auto; display:block;"
+            />
+            <p style="font-size: 0.9em; margin-top: 15px; text-align: left;">
+              <strong>Tracking Failure (Object-Level Masking).</strong> Severe feature starvation triggers multiple relocalizations and tracking instability.
+            </p>
+          </td>
+
+          <td style="width:50%; text-align:center; padding-left:10px; vertical-align:top;">
+            <img
+              src="Assets/fig6.png"
+              alt="Stable Tracking with Pixel-Wise Motion Masking (Ours)"
+              style="width:100%; height:auto; display:block;"
+            />
+            <p style="font-size: 0.9em; margin-top: 15px; text-align: left;">
+              <strong>Stable Tracking (Ours).</strong> By selectively masking only moving pixels, temporarily static features on dynamic objects are preserved, ensuring continuous tracking without any relocalization.
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <table style="width:90%; max-width:1000px; margin:20px auto; border:none;">
+        <tr>
+          <td style="width:50%; text-align:center; padding-right:10px; vertical-align:top;">
+            <img
+              src="Assets/epipolar1.png"
+              alt="Epipolar Constraints 1"
+              style="width:100%; height:auto; display:block;"
+            />
+          </td>
+          <td style="width:50%; text-align:center; padding-left:10px; vertical-align:top;">
+            <img
+              src="Assets/epipolar2.png"
+              alt="Epipolar Constraints 2"
+              style="width:100%; height:auto; display:block;"
+            />
+          </td>
+        </tr>
+      </table>
+      <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
+        <strong>Accurate Epipolar Constraints.</strong> Furthermore, our method preserves accurate epipolar constraints even under severe dynamic occlusions, confirming the high precision of the estimated pose.
+      </p>
+
+
+
       
       <h3>Speed with High Tracking Accuracy</h3>
       <img
         src="Assets/table1.png"
         alt="Table 1: Runtime and ATE RMSE Comparison"
-        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+        style="width:60%; max-width:600px; display:block; margin:20px auto;" 
       />
       
       <p>
@@ -388,155 +438,6 @@ tracking and mapping while preserving a clean global map.
       
     </div>
 
-    <!-- 3 Images Carousel -->
-    <h3>Image Gallery</h3>
-    <div class="carousel-container" id="imageCarousel">
-      <div class="carousel-track">
-        <div class="carousel-slide">
-          <img src="Assets/Photo1.jpg" alt="Slide 1" />
-        </div>
-        <div class="carousel-slide">
-          <img src="Assets/Photo2.jpg" alt="Slide 2" />
-        </div>
-        <div class="carousel-slide">
-          <img src="Assets/Photo3.jpg" alt="Slide 3" />
-        </div>
-        <div class="carousel-slide">
-          <img src="Assets/Photo4.jpg" alt="Slide 4" />
-        </div>
-        <div class="carousel-slide">
-          <img src="Assets/Photo5.jpg" alt="Slide 5" />
-        </div>
-        <div class="carousel-slide">
-          <img src="Assets/Photo6.jpg" alt="Slide 6" />
-        </div>
-        <div class="carousel-slide">
-          <img src="Assets/Photo7.jpg" alt="Slide 7" />
-        </div>
-        <div class="carousel-slide">
-          <img src="Assets/Photo8.jpg" alt="Slide 8" />
-        </div>
-      </div>
-      <button class="carousel-button prev">←</button>
-      <button class="carousel-button next">→</button>
-      <div class="carousel-indicators"></div>
-    </div>
-
-    <!-- 3 Videos Carousel -->
-    <h3>Video Gallery</h3>
-    <div class="carousel-container" id="videoCarousel">
-      <div class="carousel-track">
-        <div class="carousel-slide">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/Bhg3uOx9ZPw?si=4Ie__ntcTSvRRi4y"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="carousel-slide">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/xjRALKy6Ajw?si=EMrMe_v9fXOjhi_J"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="carousel-slide">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/aaTUS5Aa8F0?si=NUvuwq8-SzC5RuqQ"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="carousel-slide">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/JficcrhnO78?si=8SryP_KFQ0orNyMt"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="carousel-slide">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/kEdr0ARq48A?si=ADLxnzCBkTDQm28o"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <div class="carousel-slide">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/v_ulHMfDUco?si=0fJGN4AmWj_zP-Ik"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
-      <button class="carousel-button prev">←</button>
-      <button class="carousel-button next">→</button>
-      <div class="carousel-indicators"></div>
-    </div>
-
-    <!-- Single YouTube Video -->
-    <div class="video-section">
-      <h3>Demo Video</h3>
-      <div class="video-container">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/ysFav0b472w?si=Rxxp3R6_tkBXAEmP"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
-
-    <!-- YouTube Video List -->
-    <div class="video-section">
-      <h3>Demo Videos List</h3>
-      <div class="video-container">
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/videoseries?si=Alenj7M9_gg7Xv49&amp;list=PL95lT3XlM14SgZHmmKn1mGSAAQc8ycq8v"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
 
     <!-- Step 6 End: Add your paper results -->
 
