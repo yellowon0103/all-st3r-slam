@@ -335,9 +335,29 @@ tracking and mapping while preserving a clean global map.
       <p>TODO: Add Results</p>
       <h3>Generalizable Dynamic Mask</h3>
       <p>TODO: Add Results</p>
-      <h3>Ablation Study</h3>
-      <p>TODO: Add Results</p>
       
+      <h3>Ablation Study</h3>
+      <img
+        src="Assets/ablation_study.png"
+        alt="Ablation Study Results"
+        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+      />
+
+      <p>
+        We conduct an ablation study on the Bonn and TUM RGB-D datasets to evaluate the individual contributions of our core components. We compare our full pipeline (<strong>All-St3R SLAM</strong>) against two configurations: <em>w/o Conf Reweighting</em> and <em>w/o All-Tracker</em>.
+      </p>
+
+      <ul>
+        <li>
+          <strong>Robustness in Dynamic Scenes:</strong> Our full method provides significantly more stable tracking in highly dynamic scenarios. In complex environments with multiple dynamic objects (e.g., Crowd sequences), baselines experience a notable increase in trajectory error, whereas our method remains robust.
+        </li>
+        <li>
+          <strong>Importance of Appearance Cues:</strong> Relying solely on DUSt3R’s geometric matching ($M_{geo}$) is vulnerable in crowded scenes, as it can establish false matches based strictly on spatial proximity. Incorporating <strong>All-Tracker</strong> provides robust dense correspondences via image-level visual appearance, effectively bypassing these geometric proximity traps.
+        </li>
+        <li>
+          <strong>Trade-off in Static Scenes:</strong> In sequences with extensive static regions, our full pipeline shows comparable or slightly lower performance. This is a minor trade-off caused by the confidence reweighting strategy and conservative dynamic masking, which occasionally removes useful static points.
+        </li>
+      </ul>      
       
     </div>
 
