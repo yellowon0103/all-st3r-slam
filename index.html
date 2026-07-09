@@ -303,8 +303,34 @@ tracking and mapping while preserving a clean global map.
       -->
       <h3>Robust tracking stability</h3>
       <p>TODO: Add Results</p>
+      
       <h3>Speed with High Tracking Accuracy</h3>
-      <p>TODO: Add Results</p>
+      <img
+        src="Assets/table1.png"
+        alt="Table 1: Runtime and ATE RMSE Comparison"
+        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+      />
+      
+      <p>
+        Table I presents the comparison of Runtime (FPS) and Absolute Trajectory Error (ATE RMSE) on the Wild-SLAM and Bonn datasets. Our method achieves ∼11.61 FPS on Wild-SLAM and ∼10.13 FPS on Bonn with peak GPU memory usages of 7.65 GB and 9.46 GB, respectively. This is significantly faster than the SOTA method, WildGS-SLAM [8], which operates at roughly 0.5 FPS (Full) to 2 FPS (Fast). Despite this high speed, our tracking accuracy is comparable to WildGS-SLAM [8].
+      </p>
+
+      <img
+        src="Assets/table2.png"
+        alt="Table 2: Evaluation on Bonn Dynamic sequences"
+        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+      />
+
+      <img
+        src="Assets/table3.png"
+        alt="Table 3: Evaluation on TUM RGB-D Dynamic sequences"
+        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
+      />
+
+      <p>
+        Table II presents the quantitative evaluation on the Bonn Dynamic sequences. Our method attains an Average ATE of 2.46 cm, achieving the second-best overall performance, closely approaching the SOTA WildGS-SLAM (2.31 cm) [8]. Table III presents the evaluation on the TUM RGB-D Dynamic sequences. While some recent learning-based methods such as MonoGS (26.4 cm) [19] and MonST3R-SW (20.8 cm) [22] suffer from catastrophic failures or large drift in these highly dynamic scenarios, our method maintains a stable and competitive performance with an average ATE of 2.27 cm, operating at ∼10.18 FPS with a peak GPU memory of 9.74 GB.
+      </p>
+      
       <h3>Dynamic Masking Analysis</h3>
       <p>TODO: Add Results</p>
       <h3>Generalizable Dynamic Mask</h3>
