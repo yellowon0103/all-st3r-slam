@@ -294,15 +294,6 @@ mask accumulation strategy, as illustrated in the right figure.
         We evaluate the core claim of this work: frame-by-frame <strong>pixel-wise motion masking</strong> significantly improves tracking stability in highly dynamic scenes. Unlike object-level masking approaches that often discard valid correspondences and cause feature starvation, our method preserves temporarily static regions to maintain continuous pose estimation without tracking failures or relocalization.
       </p>
 
-      <img
-        src="Assets/fig4.png"
-        alt="Object-Level Masking (SAM2) Over-removal"
-        style="width:90%; max-width:1000px; display:block; margin:20px auto;"
-      />
-      <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
-        <strong>Object-Level Masking Over-removal.</strong> Visualization on the <em>crowd</em> sequence of the Bonn RGB-D Dataset using SAM2. Even when motion is limited to a specific part (e.g., moving arms), the entire human body is masked out, discarding valid static regions and reducing essential matching correspondences.
-      </p>
-
       <table style="width:90%; max-width:1000px; margin:20px auto; border:none;">
         <tr>
           <td style="width:50%; text-align:center; padding-right:10px; vertical-align:top;">
@@ -323,7 +314,7 @@ mask accumulation strategy, as illustrated in the right figure.
               style="width:100%; height:auto; display:block;"
             />
             <p style="font-size: 0.9em; margin-top: 15px; text-align: left;">
-              <strong>Stable Tracking (Ours).</strong> By selectively masking only moving pixels, temporarily static features on dynamic objects are preserved, ensuring continuous tracking without any relocalization.
+              <strong>Stable Tracking with Pixel-Wise Motion Masking (Ours).</strong> Under the same dynamic conditions, our method selectively masks only moving parts while preserving static regions. The system maintains continuous tracking without any relocalization. This confirms that utilizing temporarily static features on dynamic objects is helpful for robustness.
             </p>
           </td>
         </tr>
@@ -348,7 +339,8 @@ mask accumulation strategy, as illustrated in the right figure.
         </tr>
       </table>
       <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
-        <strong>Accurate Epipolar Constraints.</strong> Furthermore, our method preserves accurate epipolar constraints even under severe dynamic occlusions, confirming the high precision of the estimated pose.
+        <strong>Geometric Verification under Dynamic Occlusion.</strong> (Left: Keyframe, Right: Current Frame). 
+        Visualization of valid matches (dots) and epipolar lines. Despite large dynamic obstructions, the system maintains accurate epipolar constraints and secures a sufficient number of reliable matches, confirming stable pose estimation.
       </p>
 
 
@@ -382,9 +374,6 @@ mask accumulation strategy, as illustrated in the right figure.
       </p>
       
       <h3>Dynamic Masking Analysis</h3>
-<p>
-        Existing methods utilizing uncertainty maps derived from DINOv2 features often produce blurry results due to low-resolution feature extraction. In contrast, our approach generates sharp, full-resolution dynamic masks that effectively isolate moving objects, preventing them from corrupting the reconstructed map.
-      </p>
 
       <img
         src="Assets/fig9.png"
@@ -392,7 +381,8 @@ mask accumulation strategy, as illustrated in the right figure.
         style="width:90%; max-width:1000px; display:block; margin:20px auto;"
       />
       <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
-        <strong>Mask Quality Comparison.</strong> Left: Uncertainty map from WildGS-SLAM, which is blurry due to feature downsampling. Right: Our pixel-wise dynamic mask on the Bonn dataset, showing high-resolution sharpness and better boundary adherence.
+        <strong>Mask Quality Comparison.</strong> 
+        Left: Uncertainty map from WildGS-SLAM, which is blurry due to feature downsampling. Right: Our pixel-wise dynamic mask on the Bonn dataset, showing high-resolution sharpness and better boundary adherence.
       </p>
 
       <img
@@ -401,7 +391,8 @@ mask accumulation strategy, as illustrated in the right figure.
         style="width:90%; max-width:1000px; display:block; margin:20px auto;"
       />
       <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
-        <strong>KeyFrame Dynamic Masks.</strong> Visualization of dynamic masks on keyframes from the <em>freiburg3 walking xyz</em> sequence. The system effectively identifies the moving person.
+        <strong>KeyFrame Dynamic Masks.</strong> 
+        Visualization of dynamic masks on keyframes from the <em>freiburg3 walking xyz</em> sequence. The system effectively identifies the moving person.
       </p>
 
       <img
@@ -410,7 +401,8 @@ mask accumulation strategy, as illustrated in the right figure.
         style="width:90%; max-width:1000px; display:block; margin:20px auto;"
       />
       <p style="text-align: center; font-size: 0.9em; margin-bottom: 40px;">
-        <strong>Reconstruction on Bonn Dataset.</strong> Left: Final reconstruction of person tracking. The moving person is completely removed, resulting in clean geometry. Right: Live tracking visualization showing the current frame (rainbow point cloud) aligned to the canonical map, with the dynamic person effectively masked out.
+        <strong>Reconstruction on Bonn Dataset.</strong> 
+        Left: Final reconstruction of person tracking. The moving person is completely removed, resulting in clean geometry. Right: Live tracking visualization showing the current frame (rainbow point cloud) aligned to the canonical map, with the dynamic person effectively masked out.
       </p>
       
       
@@ -449,8 +441,8 @@ mask accumulation strategy, as illustrated in the right figure.
     -->
 
     <div class="content-section" id="conclusion">
-      <h2>Conclusion</h2>
-      <p>TODO: Add Conclusion</p>
+      <h2>Acknowledgment</h2>
+      <p>This work was supported by Institute of Information & communications Technology Planning & Evaluation (IITP) grant funded by the Korea government(MSIT)(No.RS-2026- 25516746,  Development  of  On-Device  VLA-Based  Real- Time  Action  Intelligence  Technology  for  Task  Execution of Autonomous Agents) and the Korea Institute of Science and Technology (KIST) Institutional Program (Project No. 26E0061).</p>
     </div>
 
     <!-- Step 7 End: Add your paper conclusion -->
